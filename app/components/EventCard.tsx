@@ -5,24 +5,24 @@ type Props = {
   title: string;
   date: Date;
   artists: string[];
+  venue: string;
 };
 
-function EventCard({ title, date, artists }: Props) {
+function EventCard({ title, date, artists, venue }: Props) {
   return (
-    <div className="m-1 p-2 border-b border-gray-300">
-      <div className="flex justify-between mt-2">
-        <p className="text-gray-500 text-sm">
-          {dayjs(date).format('MM/DD (ddd) HH:mm')}
-        </p>
-        <button className="text-sm text-white bg-gray-400 px-3">購票</button>
+    <div className="pt-2 px-3 border-gray-300 text-center">
+      <div className="py-3 text-gray-500 text-sm">
+        <p>{dayjs(date).format('MM/DD (ddd)')}</p>
+        <p>{dayjs(date).format('HH:mm')}</p>
       </div>
-      <h3 className="text-lg font-thin py-1">{title}</h3>
-      <p>{}</p>
-      <div>
-        {artists.map((artist) => (
-          <p key={artist} className="text-sm text-gray-500">
+      <h3 className="text-lg font-medium text-gray-600">{title}</h3>
+      <p className="pb-1 text-sm text-gray-400">{venue}</p>
+      <div className="border-b pb-5">
+        {artists.map((artist, index) => (
+          <span key={artist} className="text-sm text-gray-500">
             {artist}
-          </p>
+            {index < artists.length - 1 && ','}
+          </span>
         ))}
       </div>
     </div>
